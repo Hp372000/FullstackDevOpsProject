@@ -6,7 +6,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:80"    # Expose React app locally at http://localhost:3000
+      - "3000:80"
     depends_on:
       - backend
     environment:
@@ -17,7 +17,25 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"  # API accessible locally at http://localhost:8080
+      - "8080:8080"
     environment:
-      - ENV=development
+      - PORT=8080
+
+  auth:
+    build:
+      context: ./services/auth
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=8081
+
+  payments:
+    build:
+      context: ./services/payments
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - PORT=8082
 
