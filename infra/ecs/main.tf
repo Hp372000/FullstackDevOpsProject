@@ -28,3 +28,8 @@ module "payments_service" {
   subnet_ids         = var.subnet_ids
   security_group_id  = var.security_group_id
 }
+
+module "ecs_execution_role" {
+  source = "../../tf_modules/ecs-task-execution-role"
+  role_name = var.execution_role_name
+}
